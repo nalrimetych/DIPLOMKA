@@ -47,6 +47,12 @@ let joinRoomInit = async() => {
 	client.on('user-left', handleUserLeft)
 
 	joinStream()
+
+	window.addEventListener('beforeunload', async () => {
+		if (rtmClient) {
+		    await rtmClient.logout()
+		}
+	})
 }
 
 let joinStream = async () => {
